@@ -1,26 +1,27 @@
-// jshint esversion:6
+
 const express = require("express");
 const bodyparser = require("body-parser");
 
 const app = express();
 const ejs = require("ejs");
 
-var items = [];
+let items = [];
 
 app.use(bodyparser.urlencoded({extended:true}));
+app.use(express.static(__dirname+"/public"));
 
 app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
-  var today = new Date();
+  let today = new Date();
 
-  var option = {
+  let option = {
     weekday: "long",
     day: "numeric",
     month: "long",
   };
 
-  var day = today.toLocaleDateString("en-US",option);
+  let day = today.toLocaleDateString("en-US",option);
 
   res.render("ind", {
     todayisday: day,
@@ -31,7 +32,7 @@ app.get("/", function (req, res) {
 
 app.post("/",function(req,res){
 
-  var item = req.body.newItem;
+  let item = req.body.newItem;
   items.push(item);
   res.redirect("/");
 
