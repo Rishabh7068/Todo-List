@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+</head>
+<body>
+
+   <h1> <%= todayisday %> </h1>
+
+   <ul>
+    <li>Buy Milk</li>
+    <li>Buy Coffee</li>
+    <li>Buy Ice</li>
+    <li>buy Icecream</li>
+
+  <%  for(var i = 0 ; i < newitem.length ; i++){ %>
+        <li><%=newitem[i]%></li>
+        <%   } %> 
+
+   </ul>
+
+   <form action="/" method="post">
+    <input type="text" name="newItem">
+    <button type="submit" name="button">Add</button>
+   </form>
+    
+</body>
+</html>
