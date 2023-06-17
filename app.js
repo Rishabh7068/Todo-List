@@ -6,6 +6,7 @@ const app = express();
 const ejs = require("ejs");
 
 let items = [];
+let worki =[];
 
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static(__dirname+"/public"));
@@ -24,7 +25,7 @@ app.get("/", function (req, res) {
   let day = today.toLocaleDateString("en-US",option);
 
   res.render("ind", {
-    todayisday: day,
+    listtitle : "Food "+day,
     newitem : items
   });
 });
@@ -33,10 +34,36 @@ app.get("/", function (req, res) {
 app.post("/",function(req,res){
 
   let item = req.body.newItem;
-  items.push(item);
-  res.redirect("/");
+  console.log(req.body.submit);
+  if(req.body.submit === "work"){
+    worki.push(item);
+    res.redirect("/work");
+  }else{
+    items.push(item);
+    res.redirect("/");
+  }
+});
 
-})
+app.get("/work",function(req,res){
+  
+  res.render("ind", {
+    listtitle : "work",
+    newitem : worki
+  });
+
+});
+
+app.post("/work",function(req,res){
+
+  let item = req.body.newItem;
+  worki.push(item);
+  res.redirect("/work");
+
+});
+
+
+
+
 
 
 
