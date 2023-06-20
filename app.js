@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const date = require(__dirname+"/date.js");
-console.log(date());
 
 const app = express();
 const ejs = require("ejs");
@@ -16,7 +15,7 @@ app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
   
-  let day = date();
+  let day = date.getDay();
 
   res.render("ind", {
     listtitle: "Food " + day,
