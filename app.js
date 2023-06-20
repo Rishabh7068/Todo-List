@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
+const date = require(__dirname+"/date.js");
+console.log(date());
 
 const app = express();
 const ejs = require("ejs");
@@ -13,15 +15,8 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
-  let today = new Date();
-
-  let option = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  };
-
-  let day = today.toLocaleDateString("en-US", option);
+  
+  let day = date();
 
   res.render("ind", {
     listtitle: "Food " + day,
